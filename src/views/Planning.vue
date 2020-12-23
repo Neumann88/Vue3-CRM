@@ -12,7 +12,7 @@
           12 122 из 14 0000
         </p>
         <div class="progress">
-          <div class="determinate green" style="width:40%"></div>
+          <div class="determinate blue darken-1" style="width:40%"></div>
         </div>
       </div>
     </section>

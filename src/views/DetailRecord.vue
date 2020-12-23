@@ -9,7 +9,7 @@
       </div>
       <div class="row">
         <div class="col s12 m6">
-          <div class="card red">
+          <div class="card blue darken-4">
             <div class="card-content white-text">
               <p>Описание:</p>
               <p>Сумма:</p>

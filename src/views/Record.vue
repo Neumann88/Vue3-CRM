@@ -38,7 +38,7 @@
         <span class="helper-text invalid">description пароль</span>
       </div>
 
-      <button class="btn waves-effect waves-light" type="submit">
+      <button class="btn waves-effect blue darken-1" type="submit">
         Создать
         <i class="material-icons right">send</i>
       </button>

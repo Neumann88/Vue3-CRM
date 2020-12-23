@@ -26,7 +26,10 @@
     </div>
     <div class="card-action">
       <div>
-        <button class="btn waves-effect waves-light auth-submit" type="submit">
+        <button
+          class="btn waves-effect blue darken-1 auth-submit"
+          type="submit"
+        >
           Зарегистрироваться
           <i class="material-icons right">send</i>
         </button>
@@ -34,7 +37,7 @@
 
       <p class="center">
         Уже есть аккаунт?
-        <a href="/">Войти!</a>
+        <a class="btn blue darken-1" href="/">Войти!</a>
       </p>
     </div>
   </form>

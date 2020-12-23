@@ -24,7 +24,7 @@
                 <span class="helper-text invalid">Минимальная величина</span>
               </div>
 
-              <button class="btn waves-effect waves-light" type="submit">
+              <button class="btn waves-effect blue darken-1" type="submit">
                 Создать
                 <i class="material-icons right">send</i>
               </button>
@@ -57,7 +57,7 @@
                 <span class="helper-text invalid">LIMIT</span>
               </div>
 
-              <button class="btn waves-effect waves-light" type="submit">
+              <button class="btn waves-effect blue darken-1" type="submit">
                 Обновить
                 <i class="material-icons right">send</i>
               </button>

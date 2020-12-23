@@ -28,10 +28,10 @@
             <td>12.12.32</td>
             <td>name</td>
             <td>
-              <span class="white-text badge red">Расход</span>
+              <span class="white-text badge blue darken-4">Расход</span>
             </td>
             <td>
-              <button class="btn-small btn">
+              <button class="btn-small blue darken-1">
                 <i class="material-icons">open_in_new</i>
               </button>
             </td>
