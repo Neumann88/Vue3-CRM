@@ -1,5 +1,5 @@
 <template>
-  <div id="nav">
+  <div class="wrapper">
     <component :is="layout">
       <router-view />
     </component>
