@@ -38,12 +38,7 @@
           success-message="It`s matched!"
         />
       </div>
-      <p>
-        <label>
-          <input type="checkbox" />
-          <span>С правилами согласен</span>
-        </label>
-      </p>
+      <Checkbox name="checkbox" value="true" />
     </div>
     <div class="card-action">
       <div>
@@ -55,7 +50,6 @@
           <i class="material-icons right">send</i>
         </button>
       </div>
-
       <p class="center">
         Уже есть аккаунт?
         <router-link class="btn blue darken-1" to="/login">Войти!</router-link>
@@ -66,8 +60,10 @@
 
 
 <script>
-import { Form } from "vee-validate";
+import { Form, ErrorMessage } from "vee-validate";
 import * as Yup from "yup";
+
+import Checkbox from "@/components/textinput/Checkbox.vue";
 import TextInput from "@/components/textinput/TextInput.vue";
 
 export default {
@@ -75,12 +71,15 @@ export default {
   components: {
     TextInput,
     Form,
+    ErrorMessage,
+    Checkbox,
   },
   setup() {
     function onSubmit(values) {
       console.log(JSON.stringify(values, null, 2));
     }
     const schema = Yup.object().shape({
+      checkbox: Yup.string().required(),
       name: Yup.string().min(4).required(),
       email: Yup.string().email().required(),
       password: Yup.string().min(6).required(),

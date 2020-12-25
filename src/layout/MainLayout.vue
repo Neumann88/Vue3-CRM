@@ -7,12 +7,6 @@
         <router-view />
       </div>
     </main>
-
-    <!-- <div class="fixed-action-btn">
-      <router-link class="btn-floating btn-large blue darken-1" to="/record">
-        <i class="large material-icons">add</i>
-      </router-link>
-    </div> -->
   </div>
 </template>
 
