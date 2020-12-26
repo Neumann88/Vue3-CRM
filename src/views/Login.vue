@@ -45,7 +45,9 @@
 <script>
 import { Form } from "vee-validate";
 import * as Yup from "yup";
+
 import TextInput from "@/components/textinput/TextInput.vue";
+import messages from "@/utils/messages.js"
 
 export default {
   name: "Login",
@@ -53,10 +55,18 @@ export default {
     TextInput,
     Form,
   },
+  mounted(){
+    if(messages[this.$route.query.message]){
+      this.$message(messages[this.$route.query.message])
+    }
+  },
   methods: {
-    onSubmit(values) {
-      this.$router.push("/");
-      console.log(JSON.stringify(values, null, 2));
+    async onSubmit({email,password}) {
+     try{
+       await this.$store.dispatch("login",{email,password})
+       this.$router.push("/");
+     }catch(e){
+     }
     },
   },
   setup() {

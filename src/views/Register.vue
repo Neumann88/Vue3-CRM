@@ -74,10 +74,17 @@ export default {
     ErrorMessage,
     Checkbox,
   },
+   methods: {
+    async onSubmit({email,password,name}) {
+     try{
+       await this.$store.dispatch("register",{email,password,name})
+       this.$router.push("/");
+     }catch(e){
+     }
+    },
+  },
   setup() {
-    function onSubmit(values) {
-      console.log(JSON.stringify(values, null, 2));
-    }
+  
     const schema = Yup.object().shape({
       checkbox: Yup.string().required(),
       name: Yup.string().min(4).required(),
@@ -88,7 +95,6 @@ export default {
         .oneOf([Yup.ref("password")], "Passwords do not match"),
     });
     return {
-      onSubmit,
       schema,
     };
   },
