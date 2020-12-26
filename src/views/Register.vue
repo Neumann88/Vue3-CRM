@@ -74,6 +74,7 @@ export default {
     ErrorMessage,
     Checkbox,
   },
+ 
    methods: {
     async onSubmit({email,password,name}) {
      try{
