@@ -7,7 +7,7 @@
           name="email"
           type="email"
           label="E-mail"
-          placeholder="Your email address"
+          placeholder="Ваш email"
           success-message="Got it!"
         />
       </div>
@@ -16,7 +16,7 @@
           name="password"
           type="password"
           label="Password"
-          placeholder="Your password"
+          placeholder="Ваш пароль"
           success-message="Secure!"
         />
       </div>
@@ -47,7 +47,7 @@ import { Form } from "vee-validate";
 import * as Yup from "yup";
 
 import TextInput from "@/components/textinput/TextInput.vue";
-import messages from "@/utils/messages.js"
+import messages from "@/utils/messages.js";
 
 export default {
   name: "Login",
@@ -55,24 +55,27 @@ export default {
     TextInput,
     Form,
   },
-  mounted(){
-    if(messages[this.$route.query.message]){
-      this.$message(messages[this.$route.query.message])
+  mounted() {
+    if (messages[this.$route.query.message]) {
+      this.$message(messages[this.$route.query.message]);
     }
   },
   methods: {
-    async onSubmit({email,password}) {
-     try{
-       await this.$store.dispatch("login",{email,password})
-       this.$router.push("/");
-     }catch(e){
-     }
+    async onSubmit({ email, password }) {
+      try {
+        await this.$store.dispatch("login", { email, password });
+        this.$router.push("/");
+      } catch (e) {}
     },
   },
   setup() {
     const schema = Yup.object().shape({
-      email: Yup.string().email().required(),
-      password: Yup.string().min(6).required(),
+      email: Yup.string()
+        .email()
+        .required(),
+      password: Yup.string()
+        .min(6)
+        .required(),
       confirm_password: Yup.string()
         .required()
         .oneOf([Yup.ref("password")], "Passwords do not match"),

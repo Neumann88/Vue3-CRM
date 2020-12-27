@@ -9,6 +9,7 @@
       :id="name"
       :type="type"
       :value="inputValue"
+      :placeholder="placeholder"
       @input="handleChange"
       @blur="handleBlur"
     />
@@ -40,6 +41,10 @@ export default {
       type: String,
       required: true,
     },
+    placeholder: {
+      type: String,
+      required: true,
+    },
     successMessage: {
       type: String,
       default: "",
@@ -67,9 +72,7 @@ export default {
 };
 </script>
 
-
-
-<style  scoped>
+<style scoped>
 .TextInput.has-error input {
   color: #f23648;
 }

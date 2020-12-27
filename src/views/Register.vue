@@ -7,7 +7,7 @@
           name="name"
           type="text"
           label="Your Name"
-          placeholder="text"
+          placeholder="Ваше имя"
           success-message="Nice to meet you!"
         />
       </div>
@@ -16,7 +16,7 @@
           name="email"
           type="email"
           label="E-mail"
-          placeholder="Your email address"
+          placeholder="Ваш email"
           success-message="Got it!"
         />
       </div>
@@ -25,7 +25,7 @@
           name="password"
           type="password"
           label="Password"
-          placeholder="Your password"
+          placeholder="Ваш пароль"
           success-message="Secure!"
         />
       </div>
@@ -34,7 +34,7 @@
           name="confirm_password"
           type="password"
           label="Confirm Password"
-          placeholder="Type it again"
+          placeholder="Повторите пароль"
           success-message="It`s matched!"
         />
       </div>
@@ -58,7 +58,6 @@
   </Form>
 </template>
 
-
 <script>
 import { Form, ErrorMessage } from "vee-validate";
 import * as Yup from "yup";
@@ -74,23 +73,27 @@ export default {
     ErrorMessage,
     Checkbox,
   },
- 
-   methods: {
-    async onSubmit({email,password,name}) {
-     try{
-       await this.$store.dispatch("register",{email,password,name})
-       this.$router.push("/");
-     }catch(e){
-     }
+
+  methods: {
+    async onSubmit({ email, password, name }) {
+      try {
+        await this.$store.dispatch("register", { email, password, name });
+        this.$router.push("/");
+      } catch (e) {}
     },
   },
   setup() {
-  
     const schema = Yup.object().shape({
       checkbox: Yup.string().required(),
-      name: Yup.string().min(4).required(),
-      email: Yup.string().email().required(),
-      password: Yup.string().min(6).required(),
+      name: Yup.string()
+        .min(4)
+        .required(),
+      email: Yup.string()
+        .email()
+        .required(),
+      password: Yup.string()
+        .min(6)
+        .required(),
       confirm_password: Yup.string()
         .required()
         .oneOf([Yup.ref("password")], "Passwords do not match"),

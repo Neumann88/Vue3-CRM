@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import HomeCurrency from "@/components/HomeСurrency.vue";
-import HomeRate from "@/components/HomeRate.vue";
+import HomeCurrency from "@/components/homeApi/HomeСurrency.vue";
+import HomeRate from "@/components/homeApi/HomeRate.vue";
 import Loader from "../components/Loader.vue";
 
 export default {
