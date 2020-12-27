@@ -10,16 +10,17 @@ export default {
         throw e;
       }
     },
-    async logout() {
+    async logout({ commit }) {
       await firebase.auth().signOut();
+      commit("clearInfo");
     },
     async register({ dispatch, commit }, { email, password, name }) {
       try {
         await firebase.auth().createUserWithEmailAndPassword(email, password);
-        const uId = await dispatch("getIdUser");
+        const uid = await dispatch("getIdUser");
         await firebase
           .database()
-          .ref(`/users/${uId}/info`)
+          .ref(`/users/${uid}/info`)
           .set({ bill: 10000, name });
       } catch (e) {
         console.log(e);
@@ -28,8 +29,8 @@ export default {
       }
     },
     getIdUser() {
-      const userId = firebase.auth().currentUser;
-      return userId ? userId.uid : null;
+      const uid = firebase.auth().currentUser;
+      return uid ? uid.uid : null;
     },
   },
 };

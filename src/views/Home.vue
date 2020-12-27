@@ -3,50 +3,49 @@
     <div class="page-title">
       <h3>Счет</h3>
 
-      <button class="btn waves-effect  blue darken-1 btn-small">
+      <button
+        class="btn waves-effect  blue darken-1 btn-small"
+        @click="refresh"
+      >
         <i class="material-icons">refresh</i>
       </button>
     </div>
-
-    <div class="row">
-      <div class="col s12 m6 l4">
-        <div class="card blue darken-1 bill-card">
-          <div class="card-content white-text">
-            <span class="card-title">Счет в валюте</span>
-
-            <p class="currency-line">
-              <span>12.0 Р</span>
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col s12 m6 l8">
-        <div class="card blue darken-4 bill-card">
-          <div class="card-content white-text">
-            <div class="card-header">
-              <span class="card-title">Курс валют</span>
-            </div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Валюта</th>
-                  <th>Курс</th>
-                  <th>Дата</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <td>руб</td>
-                  <td>12121</td>
-                  <td>12.12.12</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
+    <Loader v-if="loading" />
+    <div v-else class="row">
+      <HomeCurrency :rates="currency.rates" />
+      <HomeRate :rates="currency.rates" :date="currency.date" />
     </div>
   </div>
 </template>
+
+<script>
+import HomeCurrency from "@/components/HomeСurrency.vue";
+import HomeRate from "@/components/HomeRate.vue";
+import Loader from "../components/Loader.vue";
+
+export default {
+  name: "Home",
+  components: {
+    HomeCurrency,
+    HomeRate,
+    Loader,
+  },
+  data() {
+    return {
+      loading: true,
+      currency: null,
+    };
+  },
+  async mounted() {
+    this.currency = await this.$store.dispatch("fetchFixer");
+    this.loading = false;
+  },
+  methods: {
+    async refresh() {
+      this.loading = true;
+      this.currency = await this.$store.dispatch("fetchFixer");
+      this.loading = false;
+    },
+  },
+};
+</script>

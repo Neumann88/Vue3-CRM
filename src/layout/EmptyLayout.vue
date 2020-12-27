@@ -5,17 +5,20 @@
 </template>
 
 <script>
-import messages from "@/utils/messages.js"
+import messages from "@/utils/messages.js";
 export default {
-  computed:{
-    error(){
-      return this.$store.getters.error
-    }
+  computed: {
+    error() {
+      return this.$store.getters.error;
+    },
   },
-  watch:{
-    error(fbError){
-      this.$error(messages[fbError.code] || "Упс, кажется нас хакают, бегите пока можете!!!")
-    }
-  }
-}
+  watch: {
+    error(fbError) {
+      this.$error(
+        messages[fbError.code] ||
+          "Упс, кажется нас хакают, бегите пока можете!!!"
+      );
+    },
+  },
+};
 </script>
