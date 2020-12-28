@@ -3,10 +3,8 @@
     class="TextInput"
     :class="{ 'has-error': !!errorMessage, success: meta.valid }"
   >
-    <label :for="name">{{ label }}</label>
     <input
       :name="name"
-      :id="name"
       :type="type"
       :value="inputValue"
       :placeholder="placeholder"
@@ -34,10 +32,6 @@ export default {
       default: "",
     },
     name: {
-      type: String,
-      required: true,
-    },
-    label: {
       type: String,
       required: true,
     },

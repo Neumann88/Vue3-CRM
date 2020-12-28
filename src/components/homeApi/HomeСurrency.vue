@@ -16,7 +16,7 @@
 export default {
   name: "HomeCurrency",
   props: ["rates"],
-  data() {
+  setup() {
     return {
       currencies: ["RUB", "USD", "EUR"],
     };

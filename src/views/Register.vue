@@ -73,15 +73,6 @@ export default {
     ErrorMessage,
     Checkbox,
   },
-
-  methods: {
-    async onSubmit({ email, password, name }) {
-      try {
-        await this.$store.dispatch("register", { email, password, name });
-        this.$router.push("/");
-      } catch (e) {}
-    },
-  },
   setup() {
     const schema = Yup.object().shape({
       checkbox: Yup.string().required(),
@@ -101,6 +92,14 @@ export default {
     return {
       schema,
     };
+  },
+  methods: {
+    async onSubmit({ email, password, name }) {
+      try {
+        await this.$store.dispatch("register", { email, password, name });
+        this.$router.push("/");
+      } catch (e) {}
+    },
   },
 };
 </script>

@@ -7,25 +7,31 @@
 
       <Form @submit="onSubmit" :validation-schema="schema">
         <div class="input-field">
-          <select>
-            <option>Category</option>
+          <select ref="selector" v-model="current">
+            <option
+              v-for="category of categories"
+              :key="category.id"
+              :value="category.id"
+              >{{ category.name }}
+            </option>
           </select>
           <label>Выберите категорию</label>
         </div>
 
         <div class="input-field">
-          <input type="text" id="name" />
-          <label for="name">Название</label>
-          <span class="helper-text invalid">TITLE</span>
+          <Field
+            id="name"
+            name="name"
+            type="text"
+            placeholder="Введите название"
+            v-model="nameStart"
+          />
+          <ErrorMessage :style="{ color: activeColor }" name="name" />
         </div>
 
         <div class="input-field">
-          <TextInput
-            name="limit"
-            type="number"
-            label="Лимит"
-            placeholder="Минимальная величина 100"
-          />
+          <Field id="limit" name="limit" type="number" v-model="limitStart" />
+          <ErrorMessage :style="{ color: activeColor }" name="limit" />
         </div>
 
         <button class="btn waves-effect blue darken-1" type="submit">
@@ -38,35 +44,70 @@
 </template>
 
 <script>
-import { Form } from "vee-validate";
+import { Field, Form, ErrorMessage } from "vee-validate";
 import * as Yup from "yup";
 
 import TextInput from "@/components/textinput/TextInput.vue";
 
 export default {
   name: "CategoryEdit",
+  props: ["categories"],
   components: {
     TextInput,
     Form,
+    Field,
+    ErrorMessage,
+  },
+  data() {
+    return {
+      activeColor: "red",
+      nameStart: "",
+      limitStart: 100,
+      current: null,
+      select: null,
+      schema: Yup.object().shape({
+        name: Yup.string().required(),
+        limit: Yup.number()
+          .min(100)
+          .integer()
+          .required(),
+      }),
+    };
+  },
+  watch: {
+    current(someId) {
+      const { name, limit } = this.categories.find((c) => c.id === someId);
+      console.log(name);
+      console.log(limit);
+      this.nameStart = name;
+      this.limitStart = limit;
+    },
+  },
+  created() {
+    const { id, limit, name } = this.categories[0];
+    this.current = id;
+    this.nameStart = name;
+    this.limitStart = limit;
+  },
+  mounted() {
+    this.select = window.M.FormSelect.init(this.$refs.selector);
+  },
+  unmounted() {
+    if (this.select && this.select.destroy) this.select.destroy();
   },
   methods: {
     async onSubmit({ name, limit }) {
       try {
-        await this.$store.dispatch("createCategory", { name, limit });
+        const data = {
+          id: this.current,
+          name: this.nameStart,
+          limit: this.limitStart,
+        };
+        await this.$store.dispatch("updateCategories", data);
+        this.$message("Категория обновлена!");
+        this.$emit("update", data);
       } catch (e) {}
     },
-  },
-  setup() {
-    const schema = Yup.object().shape({
-      name: Yup.string().required(),
-      limit: Yup.number()
-        .min(100)
-        .integer()
-        .required(),
-    });
-    return {
-      schema,
-    };
   },
 };
 </script>

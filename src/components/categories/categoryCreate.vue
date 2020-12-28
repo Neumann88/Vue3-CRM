@@ -6,20 +6,15 @@
       </div>
       <Form @submit="onSubmit" :validation-schema="schema">
         <div class="input-field">
-          <TextInput
-            name="name"
-            type="text"
-            label="Название"
-            placeholder="Введите название"
-          />
+          <TextInput name="name" type="text" placeholder="Введите название" />
         </div>
 
         <div class="input-field">
           <TextInput
             name="limit"
             type="number"
-            label="Лимит"
             placeholder="Минимальная величина 100"
+            value="100"
           />
         </div>
 

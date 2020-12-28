@@ -38,7 +38,7 @@
 export default {
   name: "HomeRate",
   props: ["rates", "date"],
-  data() {
+  setup() {
     return {
       currencies: ["RUB", "USD", "EUR"],
     };

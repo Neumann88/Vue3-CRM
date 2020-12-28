@@ -55,19 +55,6 @@ export default {
     TextInput,
     Form,
   },
-  mounted() {
-    if (messages[this.$route.query.message]) {
-      this.$message(messages[this.$route.query.message]);
-    }
-  },
-  methods: {
-    async onSubmit({ email, password }) {
-      try {
-        await this.$store.dispatch("login", { email, password });
-        this.$router.push("/");
-      } catch (e) {}
-    },
-  },
   setup() {
     const schema = Yup.object().shape({
       email: Yup.string()
@@ -83,6 +70,19 @@ export default {
     return {
       schema,
     };
+  },
+  mounted() {
+    if (messages[this.$route.query.message]) {
+      this.$message(messages[this.$route.query.message]);
+    }
+  },
+  methods: {
+    async onSubmit({ email, password }) {
+      try {
+        await this.$store.dispatch("login", { email, password });
+        this.$router.push("/");
+      } catch (e) {}
+    },
   },
 };
 </script>

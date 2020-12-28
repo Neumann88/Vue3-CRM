@@ -25,16 +25,16 @@ import Loader from "../components/Loader.vue";
 
 export default {
   name: "Home",
-  components: {
-    HomeCurrency,
-    HomeRate,
-    Loader,
-  },
   data() {
     return {
       loading: true,
       currency: null,
     };
+  },
+  components: {
+    HomeCurrency,
+    HomeRate,
+    Loader,
   },
   async mounted() {
     this.currency = await this.$store.dispatch("fetchFixer");
