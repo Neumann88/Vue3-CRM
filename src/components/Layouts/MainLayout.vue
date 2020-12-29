@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import Sidebar from "@/components/bar/Sidebar.vue";
-import Navbar from "@/components/bar/Navbar.vue";
+import Sidebar from "@/components/SideNavBars/Sidebar.vue";
+import Navbar from "@/components/SideNavBars/Navbar.vue";
 import Loader from "@/components/Loader.vue";
 
 export default {

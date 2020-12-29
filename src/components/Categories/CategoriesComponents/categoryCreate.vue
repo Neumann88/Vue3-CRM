@@ -6,16 +6,23 @@
       </div>
       <Form @submit="onSubmit" :validation-schema="schema">
         <div class="input-field">
-          <TextInput name="name" type="text" placeholder="Введите название" />
+          <Field
+            name="name"
+            type="text"
+            placeholder="Введите название"
+            v-model="nameStart"
+          />
+          <ErrorMessage :style="{ color: 'red' }" name="name" />
         </div>
 
         <div class="input-field">
-          <TextInput
+          <Field
             name="limit"
             type="number"
-            placeholder="Минимальная величина 100"
-            value="100"
+            placeholder="Минимальное значение 100"
+            v-model="limitStart"
           />
+          <ErrorMessage :style="{ color: 'red' }" name="limit" />
         </div>
 
         <button class="btn waves-effect blue darken-1" type="submit">
@@ -28,27 +35,29 @@
 </template>
 
 <script>
-import { Form } from "vee-validate";
+import { Field, Form, ErrorMessage } from "vee-validate";
 import * as Yup from "yup";
-
-import TextInput from "@/components/textinput/TextInput.vue";
 
 export default {
   name: "CategoryCreate",
   components: {
-    TextInput,
     Form,
+    Field,
+    ErrorMessage,
   },
-  setup() {
-    const schema = Yup.object().shape({
-      name: Yup.string().required(),
-      limit: Yup.number()
-        .min(100)
-        .integer()
-        .required(),
-    });
+  data() {
     return {
-      schema,
+      nameStart: "",
+      limitStart: 100,
+      current: null,
+      select: null,
+      schema: Yup.object().shape({
+        name: Yup.string().required(),
+        limit: Yup.number()
+          .min(100)
+          .integer()
+          .required(),
+      }),
     };
   },
   methods: {
@@ -58,6 +67,8 @@ export default {
           name,
           limit,
         });
+        this.nameStart = "";
+        this.limitStart = 100;
         resetForm();
         this.$message("Категория была создана");
         this.$emit("created", category);

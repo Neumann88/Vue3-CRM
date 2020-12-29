@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import EmptyLayout from "@/layout/EmptyLayout.vue";
-import MainLayout from "@/layout/MainLayout.vue";
+import EmptyLayout from "@/components/Layouts/EmptyLayout.vue";
+import MainLayout from "@/components/Layouts/MainLayout.vue";
 
 export default {
   computed: {

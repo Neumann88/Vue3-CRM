@@ -3,6 +3,7 @@ import { createStore } from "vuex";
 import auth from "@/store/auth.js";
 import info from "@/store/info.js";
 import category from "@/store/category.js";
+import record from "@/store/record.js";
 
 export default createStore({
   state: { error: null },
@@ -26,5 +27,5 @@ export default createStore({
       return await fetchApi.json();
     },
   },
-  modules: { auth, info, category },
+  modules: { auth, info, category, record },
 });

@@ -19,9 +19,8 @@
 </template>
 
 <script>
-import HomeCurrency from "@/components/homeApi/HomeСurrency.vue";
-import HomeRate from "@/components/homeApi/HomeRate.vue";
-import Loader from "../components/Loader.vue";
+import HomeCurrency from "@/components/Home/HomeComponents/HomeСurrency.vue";
+import HomeRate from "@/components/Home/HomeComponents/HomeRate.vue";
 
 export default {
   name: "Home",
@@ -34,7 +33,6 @@ export default {
   components: {
     HomeCurrency,
     HomeRate,
-    Loader,
   },
   async mounted() {
     this.currency = await this.$store.dispatch("fetchFixer");

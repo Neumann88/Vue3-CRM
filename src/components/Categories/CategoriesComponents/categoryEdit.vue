@@ -20,18 +20,22 @@
 
         <div class="input-field">
           <Field
-            id="name"
             name="name"
             type="text"
             placeholder="Введите название"
             v-model="nameStart"
           />
-          <ErrorMessage :style="{ color: activeColor }" name="name" />
+          <ErrorMessage :style="{ color: 'red' }" name="name" />
         </div>
 
         <div class="input-field">
-          <Field id="limit" name="limit" type="number" v-model="limitStart" />
-          <ErrorMessage :style="{ color: activeColor }" name="limit" />
+          <Field
+            name="limit"
+            type="number"
+            placeholder="Минимальное значение 100"
+            v-model="limitStart"
+          />
+          <ErrorMessage :style="{ color: 'red' }" name="limit" />
         </div>
 
         <button class="btn waves-effect blue darken-1" type="submit">
@@ -47,24 +51,20 @@
 import { Field, Form, ErrorMessage } from "vee-validate";
 import * as Yup from "yup";
 
-import TextInput from "@/components/textinput/TextInput.vue";
-
 export default {
   name: "CategoryEdit",
   props: ["categories"],
   components: {
-    TextInput,
     Form,
     Field,
     ErrorMessage,
   },
   data() {
     return {
-      activeColor: "red",
       nameStart: "",
       limitStart: 100,
       current: null,
-      select: null,
+      selector: null,
       schema: Yup.object().shape({
         name: Yup.string().required(),
         limit: Yup.number()
@@ -77,8 +77,6 @@ export default {
   watch: {
     current(someId) {
       const { name, limit } = this.categories.find((c) => c.id === someId);
-      console.log(name);
-      console.log(limit);
       this.nameStart = name;
       this.limitStart = limit;
     },
@@ -90,10 +88,11 @@ export default {
     this.limitStart = limit;
   },
   mounted() {
-    this.select = window.M.FormSelect.init(this.$refs.selector);
+    this.selector = window.M.FormSelect.init(this.$refs.selector);
+    window.M.updateTextFields();
   },
   unmounted() {
-    if (this.select && this.select.destroy) this.select.destroy();
+    if (this.selector && this.selector.destroy) this.selector.destroy();
   },
   methods: {
     async onSubmit({ name, limit }) {

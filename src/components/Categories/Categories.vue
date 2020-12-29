@@ -21,16 +21,14 @@
 </template>
 
 <script>
-import CategoryCreate from "@/components/categories/categoryCreate.vue";
-import CategoryEdit from "@/components/categories/categoryEdit.vue";
-import Loader from "@/components/Loader.vue";
+import CategoryCreate from "@/components/Categories/CategoriesComponents/categoryCreate.vue";
+import CategoryEdit from "@/components/Categories/CategoriesComponents/categoryEdit.vue";
 
 export default {
   name: "Categories",
   components: {
     CategoryCreate,
     CategoryEdit,
-    Loader,
   },
   data() {
     return {

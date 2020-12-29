@@ -8,10 +8,9 @@ import "firebase/database";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import messagePlugin from "@/utils/messagesPlugin.js";
+import messagePlugin from "@/components/utils/messagesPlugin.js";
 import filterCurrency from "@/components/filters/filterCurrency.js";
 import Loader from "@/components/Loader.vue";
-
 
 import "materialize-css/dist/js/materialize.min.js";
 
@@ -36,6 +35,5 @@ firebase.auth().onAuthStateChanged(() => {
       .use(filterCurrency)
       .component("Loader", Loader)
       .mount("#app");
-     
   }
 });

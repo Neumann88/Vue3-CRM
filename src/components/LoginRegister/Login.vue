@@ -4,15 +4,6 @@
       <span class="card-title">Домашняя бухгалтерия</span>
       <div class="input-field">
         <TextInput
-          name="name"
-          type="text"
-          label="Your Name"
-          placeholder="Ваше имя"
-          success-message="Nice to meet you!"
-        />
-      </div>
-      <div class="input-field">
-        <TextInput
           name="email"
           type="email"
           label="E-mail"
@@ -29,16 +20,6 @@
           success-message="Secure!"
         />
       </div>
-      <div class="input-field">
-        <TextInput
-          name="confirm_password"
-          type="password"
-          label="Confirm Password"
-          placeholder="Повторите пароль"
-          success-message="It`s matched!"
-        />
-      </div>
-      <Checkbox name="checkbox" value="true" />
     </div>
     <div class="card-action">
       <div>
@@ -46,39 +27,36 @@
           class="btn waves-effect blue darken-1 auth-submit"
           type="submit"
         >
-          Зарегистрироваться
+          Войти
           <i class="material-icons right">send</i>
         </button>
       </div>
+
       <p class="center">
-        Уже есть аккаунт?
-        <router-link class="btn blue darken-1" to="/login">Войти!</router-link>
+        Нет аккаунта?
+        <router-link class="btn blue darken-1" to="/register"
+          >Зарегистрироваться</router-link
+        >
       </p>
     </div>
   </Form>
 </template>
 
 <script>
-import { Form, ErrorMessage } from "vee-validate";
+import { Form } from "vee-validate";
 import * as Yup from "yup";
 
-import Checkbox from "@/components/textinput/Checkbox.vue";
-import TextInput from "@/components/textinput/TextInput.vue";
+import TextInput from "@/components/LoginRegister/InputsCheckbox/TextInput.vue";
+import messages from "@/components/utils/messages.js";
 
 export default {
-  name: "Register",
+  name: "Login",
   components: {
     TextInput,
     Form,
-    ErrorMessage,
-    Checkbox,
   },
   setup() {
     const schema = Yup.object().shape({
-      checkbox: Yup.string().required(),
-      name: Yup.string()
-        .min(4)
-        .required(),
       email: Yup.string()
         .email()
         .required(),
@@ -93,10 +71,15 @@ export default {
       schema,
     };
   },
+  mounted() {
+    if (messages[this.$route.query.message]) {
+      this.$message(messages[this.$route.query.message]);
+    }
+  },
   methods: {
-    async onSubmit({ email, password, name }) {
+    async onSubmit({ email, password }) {
       try {
-        await this.$store.dispatch("register", { email, password, name });
+        await this.$store.dispatch("login", { email, password });
         this.$router.push("/");
       } catch (e) {}
     },

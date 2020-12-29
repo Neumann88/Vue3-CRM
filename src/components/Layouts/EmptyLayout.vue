@@ -5,7 +5,8 @@
 </template>
 
 <script>
-import messages from "@/utils/messages.js";
+import messages from "@/components/utils/messages.js";
+
 export default {
   computed: {
     error() {
