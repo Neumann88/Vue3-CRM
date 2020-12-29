@@ -52,7 +52,7 @@
           name="amount"
           type="number"
           placeholder="Минимальное значение 1"
-          v-model="amountStart"
+          v-model.number="amountStart"
         />
         <ErrorMessage :style="{ color: 'red' }" name="amount" />
       </div>
@@ -139,9 +139,9 @@ export default {
             date: new Date().toJSON(),
           });
           const bill =
-            this.type === "income"
-              ? this.info.bill + this.amountStart
-              : this.info.bill - this.amountStart;
+            this.type === "outcome"
+              ? this.info.bill - this.amountStart
+              : this.info.bill + this.amountStart;
 
           await this.$store.dispatch("updateInfo", { bill });
           this.$message("Запись успешно создана");
