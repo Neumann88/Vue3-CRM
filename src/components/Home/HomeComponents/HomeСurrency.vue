@@ -5,7 +5,7 @@
         <span class="card-title">Счет в валюте</span>
 
         <p v-for="value of currencies" :key="value" class="currency-line">
-          <span>{{ $filters(getCurrency(value), value) }}</span>
+          <span>{{ this.$filters(getCurrency(value), value) }}</span>
         </p>
       </div>
     </div>

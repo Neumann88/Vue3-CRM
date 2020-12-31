@@ -5,22 +5,17 @@ export default {
     async catroriesAddArr({ commit, dispatch }) {
       try {
         const uid = await dispatch("getIdUser");
-        const categoriesArr =
+        const categories =
           (
             await firebase
               .database()
               .ref(`/users/${uid}/categories`)
               .once("value")
           ).val() || {};
-        const newArr = [];
-        Object.keys(categoriesArr).forEach((e) => {
-          newArr.push({
-            name: categoriesArr[e].name,
-            limit: categoriesArr[e].limit,
-            id: e,
-          });
-        });
-        return newArr;
+        return Object.keys(categories).map((key) => ({
+          ...categories[key],
+          id: key,
+        }));
       } catch (e) {
         commit("setError", e);
         throw e;

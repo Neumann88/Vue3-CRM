@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import firebase from "firebase/app";
 
 const routes = [
   {
@@ -16,43 +17,43 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    meta: { layout: "main" },
+    meta: { layout: "main", auth: true },
     component: () => import("@/components/Home/Home.vue"),
   },
   {
     path: "/categories",
     name: "Categories",
-    meta: { layout: "main" },
+    meta: { layout: "main", auth: true },
     component: () => import("@/components/Categories/Categories.vue"),
   },
   {
     path: "/detail-record",
     name: "DetailRecord",
-    meta: { layout: "main" },
+    meta: { layout: "main", auth: true },
     component: () => import("@/components/views/DetailRecord.vue"),
   },
   {
     path: "/history",
     name: "History",
-    meta: { layout: "main" },
+    meta: { layout: "main", auth: true },
     component: () => import("@/components/views/History.vue"),
   },
   {
     path: "/planning",
     name: "Planning",
-    meta: { layout: "main" },
-    component: () => import("@/components/views/Planning.vue"),
+    meta: { layout: "main", auth: true },
+    component: () => import("@/components/Planning/Planning.vue"),
   },
   {
     path: "/profile",
     name: "Profile",
-    meta: { layout: "main" },
+    meta: { layout: "main", auth: true },
     component: () => import("@/components/views/Profile.vue"),
   },
   {
     path: "/record",
     name: "Record",
-    meta: { layout: "main" },
+    meta: { layout: "main", auth: true },
     component: () => import("@/components/Record/Record.vue"),
   },
 ];
@@ -60,6 +61,16 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const currentUser = firebase.auth().currentUser;
+  const requireAuth = to.matched.some((record) => record.meta.auth);
+  if (requireAuth && !currentUser) {
+    next("/login");
+  } else {
+    next();
+  }
 });
 
 export default router;
