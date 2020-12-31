@@ -45,7 +45,7 @@ export default {
   },
   async mounted() {
     const records = await this.$store.dispatch("fetchRecords");
-    const categoires = await this.$store.dispatch("catroriesAddArr");
+    const categoires = await this.$store.dispatch("categoriesAddArr");
 
     this.categories = categoires.map((cat) => {
       const spend = records

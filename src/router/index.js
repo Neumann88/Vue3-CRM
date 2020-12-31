@@ -27,10 +27,10 @@ const routes = [
     component: () => import("@/components/Categories/Categories.vue"),
   },
   {
-    path: "/detail-record",
+    path: "/detail-record/:id",
     name: "DetailRecord",
     meta: { layout: "main", auth: true },
-    component: () => import("@/components/views/DetailRecord.vue"),
+    component: () => import("@/components/DetailRecord/DetailRecord.vue"),
   },
   {
     path: "/history",
@@ -48,7 +48,7 @@ const routes = [
     path: "/profile",
     name: "Profile",
     meta: { layout: "main", auth: true },
-    component: () => import("@/components/views/Profile.vue"),
+    component: () => import("@/components/Profile/Profile.vue"),
   },
   {
     path: "/record",

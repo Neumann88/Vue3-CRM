@@ -34,9 +34,8 @@ export default {
   },
   components: { HistoryTable },
   async mounted() {
-    //  this.records = await this.$store.dispatch("fetchRecords");
     const records = await this.$store.dispatch("fetchRecords");
-    this.categoires = await this.$store.dispatch("catroriesAddArr");
+    this.categoires = await this.$store.dispatch("categoriesAddArr");
     this.records = records.map((record) => {
       return {
         ...record,

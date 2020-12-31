@@ -38,7 +38,7 @@ export default {
     };
   },
   async mounted() {
-    this.categories = await this.$store.dispatch("catroriesAddArr");
+    this.categories = await this.$store.dispatch("categoriesAddArr");
     this.loading = false;
   },
   methods: {

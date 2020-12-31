@@ -2,7 +2,7 @@ import firebase from "firebase/app";
 
 export default {
   actions: {
-    async catroriesAddArr({ commit, dispatch }) {
+    async categoriesAddArr({ commit, dispatch }) {
       try {
         const uid = await dispatch("getIdUser");
         const categories =
@@ -16,6 +16,23 @@ export default {
           ...categories[key],
           id: key,
         }));
+      } catch (e) {
+        commit("setError", e);
+        throw e;
+      }
+    },
+    async categoriesAddId({ dispatch, commit }, id) {
+      try {
+        const uid = await dispatch("getIdUser");
+        const category =
+          (
+            await firebase
+              .database()
+              .ref(`/users/${uid}/categories`)
+              .child(id)
+              .once("value")
+          ).val() || {};
+        return { ...category, id };
       } catch (e) {
         commit("setError", e);
         throw e;

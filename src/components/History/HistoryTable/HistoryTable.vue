@@ -29,7 +29,7 @@
         <td>
           <button
             class="btn-small blue darken-1"
-            @click="this.$router.push(`/detail-record/?id=${rec.id}`)"
+            @click="this.$router.push('/detail-record/' + rec.id)"
           >
             <i class="material-icons">open_in_new</i>
           </button>
