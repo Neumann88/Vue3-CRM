@@ -3,7 +3,7 @@
     <div class="nav-wrapper">
       <div class="navbar-left">
         <a href="#" @click.prevent="$emit('hide')">
-          <i class="material-icons black-text" >swap_horiz</i>
+          <i class="material-icons black-text">swap_horiz</i>
         </a>
         <span class="black-text">CRM</span>
       </div>
@@ -16,7 +16,7 @@
             data-target="dropdown"
             ref="dropdown"
           >
-            {{name}}
+            {{ name }}
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
@@ -41,20 +41,20 @@
 
 <script>
 export default {
-  name:"Navbar",
+  name: "Navbar",
   methods: {
-   async logout(){
-     await this.$store.dispatch("logout")
-      this.$router.push("/login?message=logout")
-    }
+    async logout() {
+      await this.$store.dispatch("logout");
+      this.$router.push("/login?message=logout");
+    },
   },
-  computed:{
-    name(){
-      return this.$store.getters.info.name
-    }
+  computed: {
+    name() {
+      return this.$store.getters.info.name;
+    },
   },
   mounted() {
-  window.M.Dropdown.init(this.$refs.dropdown,{coverTrigger:false})
+    window.M.Dropdown.init(this.$refs.dropdown, { coverTrigger: false });
   },
-}
+};
 </script>
