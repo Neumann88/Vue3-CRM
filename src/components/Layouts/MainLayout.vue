@@ -23,6 +23,7 @@
 import Sidebar from "@/components/SideNavBars/Sidebar.vue";
 import Navbar from "@/components/SideNavBars/Navbar.vue";
 import Loader from "@/components/Loader.vue";
+import messages from "@/components/utils/messages.js";
 
 export default {
   name: "MainLayout",
@@ -43,6 +44,19 @@ export default {
     Sidebar,
     Navbar,
     Loader,
+  },
+  computed: {
+    error() {
+      return this.$store.getters.error;
+    },
+  },
+  watch: {
+    error(fbError) {
+      this.$error(
+        messages[fbError.code] ||
+          "Упс, кажется нас хакают, бегите пока можете!!!"
+      );
+    },
   },
 };
 </script>

@@ -19,12 +19,7 @@
               <td>{{ value }}</td>
               <td>{{ Math.round(rates[value] * 100) / 100 }}</td>
               <td>
-                {{
-                  date
-                    .split("-")
-                    .reverse()
-                    .join("-")
-                }}
+                {{ this.$date(date) }}
               </td>
             </tr>
           </tbody>
