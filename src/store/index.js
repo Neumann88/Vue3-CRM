@@ -22,7 +22,7 @@ export default createStore({
     async fetchFixer() {
       const key = process.env.VUE_APP_KEY;
       const fetchApi = await fetch(
-        `https://api.ratesapi.io/api/latest?base=GBP&symbols=USD,RUB,EUR`
+        `https://api.exchangerate-api.com/v4/latest/EUR`
       );
       return await fetchApi.json();
     },
