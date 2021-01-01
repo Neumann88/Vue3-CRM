@@ -184,17 +184,20 @@
     width: 100%;
   }
 }
-
-@media (max-width: 500px) {
-  .auth-card {
-    width: 95%;
+@media (max-width: 900px) {
+  .page-subtitle {
+    margin-top: 20px;
   }
 }
-@media (max-width: 600px) {
-  .bill-card {
-    height: 90%;
+@media (max-width: 450px) {
+  body,
+  span.badge {
+    font-size: 10px;
   }
-  .app-sidenav {
-    width: 50%;
+  .app-page {
+    padding-top: 20px;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    padding-right: 5px;
   }
 }

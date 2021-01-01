@@ -1,5 +1,5 @@
 <template>
-  <table>
+  <table class="table_section">
     <thead>
       <tr>
         <th>#</th>

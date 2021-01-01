@@ -21,7 +21,7 @@ export default {
         await firebase
           .database()
           .ref(`/users/${uid}/info`)
-          .set({ bill: 10000, name, locale: "ru-RU" });
+          .set({ bill: 0, name, locale: "ru-RU" });
       } catch (e) {
         console.log(e);
         commit("setError", e);

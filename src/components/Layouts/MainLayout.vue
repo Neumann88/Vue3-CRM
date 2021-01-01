@@ -10,7 +10,7 @@
     <div v-else class="app-main-layout">
       <Navbar @hide="isActive = !isActive" />
       <Sidebar :isActive="isActive" />
-      <main class="app-content" :class="{ full: !isActive }">
+      <main class="app-content full">
         <div class="app-page">
           <router-view />
         </div>
@@ -28,7 +28,7 @@ import messages from "@/components/utils/messages.js";
 export default {
   name: "MainLayout",
   data: () => ({
-    isActive: true,
+    isActive: false,
     loading: true,
     flex: "flex",
     center: "center",

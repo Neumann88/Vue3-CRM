@@ -52,6 +52,9 @@ export default {
       }),
     };
   },
+  mounted() {
+    setTimeout(() => window.M.updateTextFields(), 0);
+  },
   methods: {
     async onSubmit({ name, limit }, { resetForm }) {
       try {
