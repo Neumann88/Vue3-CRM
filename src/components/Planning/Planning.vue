@@ -1,14 +1,16 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Планирование</h3>
+      <h3>{{ this.$locale("Menu_Planning") }}</h3>
       <h4>{{ this.$filters(info.bill) }}</h4>
     </div>
     <Loader v-if="loading" />
 
     <h1 class="center" v-else-if="!categories.length">
-      Категорий пока нет.
-      <router-link to="/categories">Добавить новую категорию</router-link>
+      {{ this.$locale("No_Сategories_Yet") }}
+      <router-link to="/categories">{{
+        this.$locale("Add_New_Сategory")
+      }}</router-link>
     </h1>
 
     <section v-else>

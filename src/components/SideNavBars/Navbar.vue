@@ -8,7 +8,7 @@
         <span class="black-text">CRM</span>
       </div>
 
-      <ul class="right hide-on-small-and-down">
+      <ul class="right">
         <li>
           <a
             class="dropdown-trigger black-text"
@@ -23,13 +23,15 @@
           <ul id="dropdown" class="dropdown-content">
             <li>
               <router-link to="/profile" class="black-text">
-                <i class="material-icons">account_circle</i>Профиль
+                <i class="material-icons">account_circle</i
+                >{{ this.$locale("Menu_Profile") }}
               </router-link>
             </li>
             <li class="divider" tabindex="-1"></li>
             <li>
               <a href="#" class="black-text" @click.prevent="logout">
-                <i class="material-icons">assignment_return</i>Выйти
+                <i class="material-icons">assignment_return</i
+                >{{ this.$locale("Menu_Logout") }}
               </a>
             </li>
           </ul>

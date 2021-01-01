@@ -2,7 +2,7 @@
   <div class="col s12 m6 l4">
     <div class="card blue darken-1 bill-card">
       <div class="card-content white-text">
-        <span class="card-title">Счет в валюте</span>
+        <span class="card-title">{{ this.$locale("Currency_Account") }}</span>
 
         <p v-for="value of currencies" :key="value" class="currency-line">
           <span>{{ this.$filters(getCurrency(value), value) }}</span>

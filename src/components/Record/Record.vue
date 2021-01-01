@@ -1,12 +1,14 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Новая запись</h3>
+      <h3>{{ this.$locale("Menu_NewRecord") }}</h3>
     </div>
     <Loader v-if="loading" />
     <h1 class="center" v-else-if="!categories.length">
-      Категорий пока нет.
-      <router-link to="/categories">Добавить новую категорию</router-link>
+      {{ this.$locale("No_Сategories_Yet") }}
+      <router-link to="/categories">{{
+        this.$locale("Add_New_Сategory")
+      }}</router-link>
     </h1>
     <Form class="form" v-else :validation-schema="schema" @submit="onSubmit">
       <div class="input-field">
@@ -18,7 +20,7 @@
             >{{ category.name }}
           </option>
         </select>
-        <label>Выберите категорию</label>
+        <label>{{ this.$locale("Select_Category") }}</label>
       </div>
 
       <p>
@@ -30,7 +32,7 @@
             value="income"
             v-model="type"
           />
-          <span>Доход</span>
+          <span>{{ this.$locale("Income") }}</span>
         </label>
       </p>
 
@@ -43,32 +45,34 @@
             value="outcome"
             v-model="type"
           />
-          <span>Расход</span>
+          <span>{{ this.$locale("Consumption") }}</span>
         </label>
       </p>
 
       <div class="input-field">
+        <label for="amount">{{ this.$locale("Minimum_Value_1") }}</label>
         <Field
+          id="amount"
           name="amount"
           type="number"
-          placeholder="Минимальное значение 1"
           v-model.number="amountStart"
         />
         <ErrorMessage :style="{ color: 'red' }" name="amount" />
       </div>
 
       <div class="input-field">
+        <label for="description">{{ this.$locale("Description") }}</label>
         <Field
+          id="description"
           name="description"
           type="text"
-          placeholder="Описание"
           v-model="descriptionStart"
         />
         <ErrorMessage :style="{ color: 'red' }" name="description" />
       </div>
 
       <button class="btn waves-effect blue darken-1" type="submit">
-        Создать
+        {{ this.$locale("Create") }}
         <i class="material-icons right">send</i>
       </button>
     </Form>

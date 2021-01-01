@@ -2,31 +2,23 @@
   <div class="col s12 m6">
     <div>
       <div class="page-subtitle">
-        <h4>Создать</h4>
+        <h4>{{ this.$locale("Create") }}</h4>
       </div>
       <Form @submit="onSubmit" :validation-schema="schema">
         <div class="input-field">
-          <Field
-            name="name"
-            type="text"
-            placeholder="Введите название"
-            v-model="nameStart"
-          />
+          <label for="name">{{ this.$locale("Enter_The_Title") }}</label>
+          <Field id="name" name="name" type="text" v-model="nameStart" />
           <ErrorMessage :style="{ color: 'red' }" name="name" />
         </div>
 
         <div class="input-field">
-          <Field
-            name="limit"
-            type="number"
-            placeholder="Минимальное значение 100"
-            v-model="limitStart"
-          />
+          <label for="limit">{{ this.$locale("Minimum_Value_100") }}</label>
+          <Field id="limit" name="limit" type="number" v-model="limitStart" />
           <ErrorMessage :style="{ color: 'red' }" name="limit" />
         </div>
 
         <button class="btn waves-effect blue darken-1" type="submit">
-          Создать
+          {{ this.$locale("Create") }}
           <i class="material-icons right">send</i>
         </button>
       </Form>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Категории</h3>
+      <h3>{{ this.$locale("Menu_Categories") }}</h3>
     </div>
     <section>
       <Loader v-if="loading" />
@@ -14,7 +14,9 @@
           :key="categories.length + updateCount"
           @update="updateCategories"
         />
-        <h1 v-else class="center">Категории пусты</h1>
+        <h1 v-else class="center">
+          {{ this.$locale("Categories_Are_Empty") }}
+        </h1>
       </div>
     </section>
   </div>

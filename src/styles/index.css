@@ -4,6 +4,7 @@
 .active {
   background: rgba(0, 0, 0, 0.05);
 }
+
 .empty-layout {
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -20,6 +21,7 @@
 .auth-card {
   width: 500px;
 }
+
 .auth-submit {
   width: 100%;
 }
@@ -29,6 +31,7 @@
 .app-page {
   padding: 2rem;
 }
+
 .app-main-layout {
   position: relative;
   min-height: 100vh;
@@ -163,4 +166,35 @@
 .history-chart {
   max-width: 600px;
   margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .row .col.m6 {
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .auth-card {
+    width: 95%;
+  }
+}
+@media (max-width: 600px) {
+  .bill-card {
+    height: 90%;
+  }
+  .app-sidenav {
+    width: 50%;
+  }
 }

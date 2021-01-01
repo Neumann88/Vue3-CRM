@@ -3,22 +3,14 @@
     <div class="card-content">
       <span class="card-title">Домашняя бухгалтерия</span>
       <div class="input-field">
-        <TextInput
-          name="email"
-          type="email"
-          label="E-mail"
-          placeholder="Ваш email"
-          success-message="Got it!"
-        />
+        <label for="email">Ваш email</label>
+        <Field id="email" name="email" type="email" />
+        <ErrorMessage :style="{ color: 'red' }" name="email" />
       </div>
       <div class="input-field">
-        <TextInput
-          name="password"
-          type="password"
-          label="Password"
-          placeholder="Ваш пароль"
-          success-message="Secure!"
-        />
+        <label for="password">Ваш пароль</label>
+        <Field id="password" name="password" type="password" />
+        <ErrorMessage :style="{ color: 'red' }" name="password" />
       </div>
     </div>
     <div class="card-action">
@@ -43,32 +35,32 @@
 </template>
 
 <script>
-import { Form } from "vee-validate";
+import { Field, Form, ErrorMessage } from "vee-validate";
 import * as Yup from "yup";
 
-import TextInput from "@/components/LoginRegister/InputsCheckbox/TextInput.vue";
 import messages from "@/components/utils/messages.js";
 
 export default {
   name: "Login",
   components: {
-    TextInput,
+    messages,
     Form,
+    Field,
+    ErrorMessage,
   },
-  setup() {
-    const schema = Yup.object().shape({
-      email: Yup.string()
-        .email()
-        .required(),
-      password: Yup.string()
-        .min(6)
-        .required(),
-      confirm_password: Yup.string()
-        .required()
-        .oneOf([Yup.ref("password")], "Passwords do not match"),
-    });
+  data() {
     return {
-      schema,
+      schema: Yup.object().shape({
+        email: Yup.string()
+          .email()
+          .required(),
+        password: Yup.string()
+          .min(6)
+          .required(),
+        confirm_password: Yup.string()
+          .required()
+          .oneOf([Yup.ref("password")], "Passwords do not match"),
+      }),
     };
   },
   mounted() {

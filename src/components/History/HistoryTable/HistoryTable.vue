@@ -3,11 +3,11 @@
     <thead>
       <tr>
         <th>#</th>
-        <th>Сумма</th>
-        <th>Дата</th>
-        <th>Категория</th>
-        <th>Тип</th>
-        <th>Открыть</th>
+        <th>{{ this.$locale("Amount") }}</th>
+        <th>{{ this.$locale("Date") }}</th>
+        <th>{{ this.$locale("Category") }}</th>
+        <th>{{ this.$locale("Type") }}</th>
+        <th>{{ this.$locale("Open") }}</th>
       </tr>
     </thead>
 

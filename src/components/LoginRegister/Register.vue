@@ -3,40 +3,24 @@
     <div class="card-content">
       <span class="card-title">Домашняя бухгалтерия</span>
       <div class="input-field">
-        <TextInput
-          name="name"
-          type="text"
-          label="Your Name"
-          placeholder="Ваше имя"
-          success-message="Nice to meet you!"
-        />
+        <label for="name">Ваше имя</label>
+        <Field id="name" name="name" type="text" />
+        <ErrorMessage :style="{ color: 'red' }" name="name" />
       </div>
       <div class="input-field">
-        <TextInput
-          name="email"
-          type="email"
-          label="E-mail"
-          placeholder="Ваш email"
-          success-message="Got it!"
-        />
+        <label for="email">Ваш email</label>
+        <Field id="email" name="email" type="email" />
+        <ErrorMessage :style="{ color: 'red' }" name="email" />
       </div>
       <div class="input-field">
-        <TextInput
-          name="password"
-          type="password"
-          label="Password"
-          placeholder="Ваш пароль"
-          success-message="Secure!"
-        />
+        <label for="password">Ваш пароль</label>
+        <Field id="password" name="password" type="password" />
+        <ErrorMessage :style="{ color: 'red' }" name="password" />
       </div>
       <div class="input-field">
-        <TextInput
-          name="confirm_password"
-          type="password"
-          label="Confirm Password"
-          placeholder="Повторите пароль"
-          success-message="It`s matched!"
-        />
+        <label for="confirm_password">Повторите пароль</label>
+        <Field id="confirm_password" name="confirm_password" type="password" />
+        <ErrorMessage :style="{ color: 'red' }" name="confirm_password" />
       </div>
       <Checkbox name="checkbox" value="true" />
     </div>
@@ -59,38 +43,34 @@
 </template>
 
 <script>
-import { Form, ErrorMessage } from "vee-validate";
+import { Field, Form, ErrorMessage } from "vee-validate";
 import * as Yup from "yup";
 
-import Checkbox from "@/components/LoginRegister/InputsCheckbox/Checkbox.vue";
-import TextInput from "@/components/LoginRegister/InputsCheckbox/TextInput.vue";
+import Checkbox from "@/components/LoginRegister/Checkbox/Checkbox.vue";
 
 export default {
   name: "Register",
   components: {
-    TextInput,
     Form,
+    Field,
     ErrorMessage,
     Checkbox,
   },
-  setup() {
-    const schema = Yup.object().shape({
-      checkbox: Yup.string().required(),
-      name: Yup.string()
-        .min(4)
-        .required(),
-      email: Yup.string()
-        .email()
-        .required(),
-      password: Yup.string()
-        .min(6)
-        .required(),
-      confirm_password: Yup.string()
-        .required()
-        .oneOf([Yup.ref("password")], "Passwords do not match"),
-    });
+  data() {
     return {
-      schema,
+      schema: Yup.object().shape({
+        checkbox: Yup.string().required(),
+        name: Yup.string().required(),
+        email: Yup.string()
+          .email()
+          .required(),
+        password: Yup.string()
+          .min(6)
+          .required(),
+        confirm_password: Yup.string()
+          .required()
+          .oneOf([Yup.ref("password")], "Passwords do not match"),
+      }),
     };
   },
   methods: {

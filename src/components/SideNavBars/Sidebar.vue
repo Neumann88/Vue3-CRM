@@ -2,27 +2,27 @@
   <ul class="sidenav app-sidenav" :class="{ open: isActive }">
     <li>
       <router-link active-class="active" to="/" exact>
-        Счет
+        {{ this.$locale("Menu_Bill") }}
       </router-link>
     </li>
     <li>
       <router-link active-class="active" to="/history">
-        История
+        {{ this.$locale("Menu_History") }}
       </router-link>
     </li>
     <li>
       <router-link active-class="active" to="/planning">
-        Планирование
+        {{ this.$locale("Menu_Planning") }}
       </router-link>
     </li>
     <li>
       <router-link active-class="active" to="/record">
-        Новая запись
+        {{ this.$locale("Menu_NewRecord") }}
       </router-link>
     </li>
     <li>
       <router-link active-class="active" to="/categories">
-        Категории
+        {{ this.$locale("Menu_Categories") }}
       </router-link>
     </li>
   </ul>

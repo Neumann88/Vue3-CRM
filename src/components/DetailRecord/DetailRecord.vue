@@ -4,9 +4,15 @@
 
     <div v-else-if="record">
       <div class="breadcrumb-wrap">
-        <router-link to="/history" class="breadcrumb">История</router-link>
+        <router-link to="/history" class="breadcrumb">{{
+          this.$locale("Menu_History")
+        }}</router-link>
         <a @click.prevent class="breadcrumb">
-          {{ record.type === "income" ? "Доход" : "Расход" }}
+          {{
+            record.type === "income"
+              ? this.$locale("Income")
+              : this.$locale("Consumption")
+          }}
         </a>
       </div>
       <div class="row">
@@ -19,9 +25,11 @@
             }"
           >
             <div class="card-content white-text">
-              <p>Описание: {{ record.description }}</p>
-              <p>Сумма: {{ this.$filters(record.amount) }}</p>
-              <p>Категория: {{ record.categoryName }}</p>
+              <p>{{ this.$locale("Description") }}: {{ record.description }}</p>
+              <p>
+                {{ this.$locale("Amount") }}: {{ this.$filters(record.amount) }}
+              </p>
+              <p>{{ this.$locale("Category") }}: {{ record.categoryName }}</p>
 
               <small>{{ this.$date(record.date) }}</small>
             </div>
@@ -31,8 +39,10 @@
     </div>
 
     <h1 class="center" v-else>
-      Такой записи нет.
-      <router-link to="/record">Добавить новую запись</router-link>
+      {{ this.$locale("No_Entries_Yet") }}
+      <router-link to="/record">{{
+        this.$locale("Add_New_Entry")
+      }}</router-link>
     </h1>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>История записей</h3>
+      <h3>{{ this.$locale("Record_History") }}</h3>
     </div>
 
     <div class="history-chart">
@@ -10,8 +10,10 @@
     <Loader v-if="loading" />
 
     <h1 class="center" v-else-if="!records.length">
-      Записей пока нет.
-      <router-link to="/record">Добавить новую запись</router-link>
+      {{ this.$locale("No_Entries_Yet") }}
+      <router-link to="/record">{{
+        this.$locale("Add_New_Entry")
+      }}</router-link>
     </h1>
 
     <section v-else>
@@ -44,7 +46,10 @@ export default {
         categoryName: this.categoires.find((c) => c.id === record.categoryId)
           .name,
         typeName: record.type === "income" ? "green" : "blue darken-4",
-        typeText: record.type === "income" ? "Доход" : "Расход",
+        typeText:
+          record.type === "income"
+            ? this.$locale("Income")
+            : this.$locale("Consumption"),
       };
     });
     this.loading = false;
