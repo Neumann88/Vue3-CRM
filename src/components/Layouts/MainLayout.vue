@@ -5,7 +5,7 @@
       class="flexLoading"
       v-if="loading"
     >
-      <Loader />
+      <Loader v-if="loading" />
     </div>
     <div v-else class="app-main-layout">
       <Navbar @hide="isActive = !isActive" />
