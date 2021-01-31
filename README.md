@@ -15,7 +15,7 @@ npm run start
 npm run build
 ```
 
-### CRM с использованием vue 3(Options API),vue cli,vuex,vue routrer,materialize-css
+### -CRM с использованием vue 3(Options API),vue cli,vuex,vue routrer,materialize-css
 ### -Использование firebase в качестве бд
 ### -Валидация форм с использованием библиотеки veevalidate
 ### -Использование ExchangeRate-API для получения курса валют
